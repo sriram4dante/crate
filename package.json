@@ -1,10 +1,19 @@
 {
-  "name": "create",
-  "version": "0.0.1",
+  "name": "getpack",
+  "description": "A simple file transfer server with UI, access permissions and logs",
+  "version": "0.0.2",
+  "author": "sriram veeraghanta",
+  "main": "./index.js",
+  "preferGlobal": true,
+  "bin": {
+    "getpack": "./index.js"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/wwww"
   },
+  "repository": "https://github.com/sriramveeraghanta/getpack",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "~1.18.2",
     "cookie-parser": "~1.4.3",
