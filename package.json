@@ -1,30 +1,19 @@
 {
   "name": "getpack",
   "description": "A simple file transfer server with UI, access permissions and logs",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "author": "sriram veeraghanta",
-  "main": "./index.js",
+  "main": "./lib/index.js",
   "preferGlobal": true,
-  "bin": {
-    "getpack": "./index.js"
-  },
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/wwww"
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "getpack": "./bin/getpack.js"
   },
   "repository": "https://github.com/sriramveeraghanta/getpack",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "~1.18.2",
-    "cookie-parser": "~1.4.3",
-    "debug": "~2.6.9",
-    "express": "~4.15.5",
-    "hbs": "~4.0.1",
-    "morgan": "~1.9.0",
-    "serve-favicon": "~2.4.5",
-    "sqlite3": "^3.1.13"
-  },
-  "devDependencies": {
-    "nodemon": "^1.14.8"
+    "express": "^4.16.3"
   }
 }
