@@ -3,13 +3,13 @@
   "description": "A simple file transfer server with UI, access permissions and logs",
   "version": "0.0.5",
   "author": "sriram veeraghanta",
-  "main": "./lib/index.js",
+  "main": "./bin/www",
   "preferGlobal": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
   "bin": {
-    "getpack": "./bin/getpack.js"
+    "getpack": "./bin/www"
   },
   "repository": "https://github.com/sriramveeraghanta/getpack",
   "license": "MIT",
