@@ -1,12 +1,13 @@
 {
   "name": "getpack",
   "description": "A simple file transfer server with UI, access permissions and logs",
-  "version": "0.0.5",
+  "version": "0.0.10",
   "author": "sriram veeraghanta",
   "main": "./bin/www",
   "preferGlobal": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "webpack -d --watch"
   },
   "bin": {
     "getpack": "./bin/www"
@@ -14,6 +15,17 @@
   "repository": "https://github.com/sriramveeraghanta/getpack",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.16.3"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-vue": "^2.0.2",
+    "css-loader": "^0.28.11",
+    "express": "^4.16.3",
+    "file-loader": "^1.1.11",
+    "vue": "^2.5.16",
+    "vue-loader": "^14.2.2",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
   }
 }
