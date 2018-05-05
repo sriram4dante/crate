@@ -1,0 +1,7 @@
+.files-list {
+  list-style: none;
+}
+.files-list li{
+  display: inline-block;
+
+}

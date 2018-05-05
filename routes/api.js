@@ -6,27 +6,29 @@ var router = express.Router();
 
 var cwd = path.resolve(process.cwd())
 
-router.get('/files/', function(req, res, next) {
-  var objs = []
-  // var dirs = getDirectories(cwd);
-  // dirs.forEach(function(dir) {
-  //   objs.push({name: dir, is_directory: true})
-  // })
+router.post('/files/', function(req, res, next) {
+  var c_path = req.body.path
   var obj = {
-    dirs: getDirectories(cwd),
-    files: getFiles(cwd),
-    cwd: cwd
+    dirs: getDirectories(cwd+c_path),
+    files: getFiles(cwd+c_path),
+    cwd: cwd+c_path
   }
+  console.log(c_path)
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(obj));
-
-  // fs.readdir(cwd, function(err, files) {
-  //   res.setHeader('Content-Type', 'application/json');
-  //   res.send(JSON.stringify(files));
-  // });
 });
 
+router.post('/files/download/', function(req, res, next) {
+  var file = req.body.filename;
+  console.log(cwd+"/"+file)
+  res.send(JSON.stringify({"filename":cwd+"/"+file}));
+})
+
 function getDirectories(srcpath) {
+  //console.log(srcpath)
+  console.log(fs.readdirSync(srcpath)
+    .map(file => file)
+    .filter(path => fs.statSync(path).isDirectory()))
   return fs.readdirSync(srcpath)
     .map(file => file)
     .filter(path => fs.statSync(path).isDirectory());

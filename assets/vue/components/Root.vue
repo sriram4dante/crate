@@ -5,9 +5,9 @@
       <div class="container">
         <ul class="row files-list">
           <li class="col-md-3 col-sm-6 text-center" v-for="dir in filesList.dirs">
-            <a v-on:click="getFiles('/'+dir)">
+            <router-link v-bind:to="'/'+dir">
               <img src="images/folder.png" width="75px" height="75px"><p>{{dir}}</p>
-            </a>
+            </router-link>
           </li>
           <li class="col-md-3 col-sm-6 text-center" v-for="file in filesList.files">
             <a v-bind:href="'/d/'+file"><img src="images/file.png" width="75px" height="75px"><p>{{file}}</p></a>
@@ -36,19 +36,12 @@ export default {
     Toolbar
   },
   mounted: function () {
-    this.getFiles("/");
+    this.getFiles();
   },
   methods: {
-    getFiles: function(path) {
+    getFiles: function() {
       var elem = this
-      fetch("/api/files/", {
-        method: "POST",
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify( {"path": path} )
-      })
+      fetch("/api/files/")
       .then(function(res) { return res.json(); })
       .then(function(data){
         console.log(data);
@@ -66,7 +59,7 @@ export default {
       })
       .then(function(res) { return res.json(); })
       .then(function(data){
-        //console.log(data)
+        console.log(data)
       });
     }
   }
