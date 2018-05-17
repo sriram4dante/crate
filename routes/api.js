@@ -9,9 +9,9 @@ var cwd = path.resolve(process.cwd())
 router.post('/files/', function(req, res, next) {
   var c_path = req.body.path
   var obj = {
-    dirs: getDirectories(cwd+c_path),
-    files: getFiles(cwd+c_path),
-    cwd: cwd+c_path
+    dirs: getDirectories(c_path),
+    files: getFiles(c_path),
+    cwd: c_path
   }
   console.log(c_path)
   res.setHeader('Content-Type', 'application/json');

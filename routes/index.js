@@ -8,47 +8,46 @@ var router = express.Router();
 var cwd = path.resolve(process.cwd())
 
 router.get('/', function(req, res, next) {
-  glob(cwd+"/*", function (err, files) {
-    console.log(files)
-    res.render('index', files)
-  })
-	// var obj = {
- //    dirs: getDirectories(cwd),
- //    files: getFiles(cwd),
- //    cwd: cwd
- //  }
- //  res.render('index', obj);
+	var obj = {
+    dirs: getDirectories(cwd),
+    files: getFiles(cwd),
+    cwd: cwd
+  }
+  res.render('index', obj);
 });
 
-// router.get('/:path(*)', function(req, res, next) {
-// 	var path = req.params.path;
-//   var c_path = cwd+"/"+path
-//   console.log("cwd: "+cwd)
-//   //console.log(c_path)
+router.get('/:path(*)', function(req, res, next) {
+	var url_path = req.params.path;
+  console.log(url_path);
+  var full_path = path.join(cwd, url_path)
 
-// 	if(checkForDir(c_path)) {
-// 		var obj = {
-//     	dirs: getDirectories(c_path),
-//     	files: getFiles(c_path),
-//     	cwd: c_path
-//   	}
-//  		res.render('index', obj);
-// 	}
-// 	else {
-// 		res.download(c_path);
-// 	}
+	if(checkForDir(full_path)) {
+    
+		var obj = {
+    	dirs: getDirectories(full_path),
+    	files: getFiles(full_path),
+    	cwd: full_path
+  	}
+ 		res.render('index', obj);
+	}
+	else {
+		res.download(full_path);
+	}
 	
-// })
+})
 
 function getDirectories(srcpath) {
+  console.log(srcpath);
   return fs.readdirSync(srcpath)
-    .map(file => file)
+    .map(file => {console.log(file);return file})
     .filter(path => fs.statSync(path).isDirectory());
 }
 function getFiles(srcpath) {
   return fs.readdirSync(srcpath)
     .map(file => file)
-    .filter(path => fs.statSync(path).isFile());
+    .filter(path => {
+      return fs.statSync(path).isFile()
+    });
 }
 function checkForDir(newPath) {
 	return fs.statSync(newPath).isDirectory();
